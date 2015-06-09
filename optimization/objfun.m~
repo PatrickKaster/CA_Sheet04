@@ -1,0 +1,18 @@
+function f=objfun(x,oFrame,skel,constraints,optProbs,jointList)
+
+% x: trajectory?
+% jointList: joints to optimize
+% constraints: trajectories of the hand
+
+%Add Code for your objective function. f can be an array!
+constraintsMat = cell2mat(constraints);
+constraintsDim = length(constraintsMat);
+f = zeros(constraintsDim);
+for i=1:constraintsDim
+    sum = 0;
+    for j=1:length(x)
+        sum = sum + (x-constraintsMat(:,i))^2;
+    end
+end
+f=0;
+
